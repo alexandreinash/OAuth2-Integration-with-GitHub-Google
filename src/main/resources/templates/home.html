@@ -2,69 +2,142 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>OAuth2 Login</title>
+    <title>Login | OAuth2 Integration</title>
     <style>
-        body {
-            font-family: "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #eef2f3, #8e9eab);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
-        .container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        body {
+            background: radial-gradient(circle at top left, #4f46e5, #7c3aed, #c084fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            width: 400px;
             text-align: center;
-            width: 350px;
-            animation: fadeIn 0.8s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 0.8s ease;
         }
 
         h1 {
-            color: #2b6cb0;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
-        .button {
-            display: block;
-            padding: 12px 20px;
-            margin: 10px 0;
-            border-radius: 6px;
+        p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            font-weight: bold;
+            border-radius: 12px;
+            font-weight: 600;
+            padding: 12px 0;
+            margin: 0.7rem 0;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
-        .google {
-            background-color: #db4437;
-            color: white;
-        }
-        .github {
-            background-color: #24292f;
-            color: white;
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
         }
 
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        .btn.google {
+            background: linear-gradient(90deg, #EA4335, #FBBC05);
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 67, 53, 0.4);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn.github {
+            background: linear-gradient(90deg, #333, #24292f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(36, 41, 47, 0.5);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .circle.one {
+            width: 300px; height: 300px;
+            background: #ff6b6b;
+            top: -80px; right: -80px;
+        }
+
+        .circle.two {
+            width: 250px; height: 250px;
+            background: #00d2d3;
+            bottom: -60px; left: -60px;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-25px) translateX(25px); }
+        }
+
+        @media (max-width: 480px) {
+            .glass-box { width: 85%; padding: 2rem; }
         }
     </style>
+    <script src="https://kit.fontawesome.com/a2d9d5b45f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
-    <h1>OAuth2 Integration Demo</h1>
-    <p>Sign in using:</p>
-    <a class="button google" href="/oauth2/authorization/google">Login with Google</a>
-    <a class="button github" href="/oauth2/authorization/github">Login with GitHub</a>
+<div class="circle one"></div>
+<div class="circle two"></div>
+
+<div class="glass-box">
+    <h1>Welcome</h1>
+
+
+    <a class="btn google" href="/oauth2/authorization/google">
+        <i class="fab fa-google"></i> Login with Google
+    </a>
+    <a class="btn github" href="/oauth2/authorization/github">
+        <i class="fab fa-github"></i> Login with GitHub
+    </a>
+
+    <div class="footer">
+        <p>Secure OAuth2 Authentication</p>
+    </div>
 </div>
 </body>
 </html>
